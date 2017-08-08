@@ -2,12 +2,15 @@ console.log('starting the app...');
 
 const fs = require('fs');
 const os = require('os');
+const _ = require('lodash');
 const notes = require('./notes.js');
 
-var res = notes.addNote();
-console.log(`Result: ${res}`);
+var filteredArray = _.uniq(['Carlos']);
+console.log(filteredArray);
+//console.log(_.isString(true));
+//console.log(_.isString('Carlos'));
 
-console.log(`Sum: ${notes.add(5, 2)}`);
+//console.log(`Sum: ${notes.add(5, 2)}`);
 
 /*var user = os.userInfo();
 
