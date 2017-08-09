@@ -4,10 +4,13 @@ const fs = require('fs');
 const _ = require('lodash');
 
 const notes = require('./notes.js');
+const yargs = require('yargs');
+
+const argv = yargs.argv;
 
 let cmd = process.argv[2];
-
-console.log(process.argv);
+console.log('Process', process.argv);
+console.log('Yargs', argv);
 
 if(cmd == 'add')
   console.log('Adding new note');
