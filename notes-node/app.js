@@ -1,4 +1,3 @@
-
 const fs = require('fs');
 const _ = require('lodash');
 
@@ -7,8 +6,6 @@ const yargs = require('yargs');
 
 const argv = yargs.argv;
 let cmd = argv._[0];
-
-console.log('Yargs', argv);
 
 
 if(cmd == 'add') {
@@ -21,10 +18,14 @@ if(cmd == 'add') {
   	console.log('Error creating the note.');
 }
 else
-	if(cmd == 'list'){
-		console.log('Note List');
-  		console.log('------');
-		notes.getAll();
+	if(cmd == 'list'){		
+  		
+		var array = notes.getAll();		
+		console.log(`Listing ${array.length} note(s).`);
+		if(array.length > 0)
+			array.forEach((note) => notes.logNote(note));		
+		else
+			console.log('No note was found');
 	}
 	else
 		if(cmd == 'read'){
