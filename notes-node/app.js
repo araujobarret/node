@@ -10,24 +10,31 @@ let cmd = argv._[0];
 
 console.log('Yargs', argv);
 
+
 if(cmd == 'add') {
-  var res = notes.addNote(argv.title, argv.body);
-  if(res){
-  	console.log('Node created.');
-  	console.log('------');
-  	console.log(`Title: ${res.title}`);
-  	console.log(`Body: ${res.body}`);
+  var note = notes.addNote(argv.title, argv.body);
+  if(note){
+  	console.log('Note created.');
+  	notes.logNote(note);
   }
   else
   	console.log('Error creating the note.');
 }
 else
 	if(cmd == 'list'){
+		console.log('Note List');
+  		console.log('------');
 		notes.getAll();
 	}
 	else
 		if(cmd == 'read'){
-			notes.getNote(argv.title);
+			let note = notes.getNote(argv.title);
+			if(note){
+				console.log('Note');
+				notes.logNote(note);
+			}
+			else
+				console.log('Note not found');
 		}
 		else
 			if(cmd == 'remove'){
