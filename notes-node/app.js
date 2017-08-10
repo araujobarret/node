@@ -1,4 +1,3 @@
-console.log('starting the app...');
 
 const fs = require('fs');
 const _ = require('lodash');
@@ -12,7 +11,15 @@ let cmd = argv._[0];
 console.log('Yargs', argv);
 
 if(cmd == 'add') {
-  notes.addNote(argv.title, argv.body);
+  var res = notes.addNote(argv.title, argv.body);
+  if(res){
+  	console.log('Node created.');
+  	console.log('------');
+  	console.log(`Title: ${res.title}`);
+  	console.log(`Body: ${res.body}`);
+  }
+  else
+  	console.log('Error creating the note.');
 }
 else
 	if(cmd == 'list'){
@@ -23,7 +30,11 @@ else
 			notes.getNote(argv.title);
 		}
 		else
-			if(cmd == 'remove')
-				notes.removeNote(argv.title);
+			if(cmd == 'remove'){
+				if(notes.removeNote(argv.title))
+					console.log('Note removed');
+				else
+					console.log('No note removed');
+			}
 			else
 				console.log('Command not recognized');
