@@ -2,6 +2,7 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+const port = process.env.PORT || 3000;
 let app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -48,12 +49,18 @@ app.get('/about', (req, res) => {
 	});
 });
 
+app.get('/projects', (req, res) => {
+	res.render('projects.hbs', {
+		title: 'Projects'		
+	});
+});
+
 app.get('/bad', (req, res) => {
 	res.send({
 		error: 'Error in the request'
 	});
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
 	console.log('Serving listening at port 3000');
 });
